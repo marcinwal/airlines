@@ -2,15 +2,38 @@ require_relative '../app/file_helper.rb'
 
 describe File_helper do
 
-  let(:sample_data_file){'../sample.txt'}
+  let(:sample_data_file){'./sample1.txt'}
   let(:tester){(Class.new{include File_helper}).new}
+  let(:pattern){{:route_pattern => /add route \D+ \D+ \d+ \d+ \d+/,
+                 :aircraft_pattern => /add aircraft \S+ \d/,
+                 :general_pattern => /add general \D+ \d{1,3}/,
+                 :airline_pattern => /add airline \D+ \d{1,3}/,
+                 :loyalty_pattern => /add loyalty \D+ \d{1,3} \d+ (True|False) (True|False)/}}
 
 
   it "should load a flight route" do
-    route,aircraft,passangers = tester.load_file(sample_data_file)
-    expect(route).to eq({origin => 'London',destination => 'Dublin',
-                         cost => 100, ticket_price => 150,
-                         min_takeoff => 50})
+    dictionary = tester.load_file(sample_data_file,pattern)
+    expect(dictionary[:route_pattern].length).to eq(1)
   end
+
+  it "should load an aircraft route" do
+    dictionary = tester.load_file(sample_data_file,pattern)
+    expect(dictionary[:aircraft_pattern].length).to eq(1)
+  end
+
+  it "should load 3 general passangers" do 
+    dictionary = tester.load_file(sample_data_file,pattern)
+    expect(dictionary[:general_pattern].length).to eq(3)
+  end
+
+  it "should load 1 airline passangers" do 
+    dictionary = tester.load_file(sample_data_file,pattern)
+    expect(dictionary[:airline_pattern].length).to eq(1)
+  end
+
+  it "should load 1 general loyalty" do 
+    dictionary = tester.load_file(sample_data_file,pattern)
+    expect(dictionary[:loyalty_pattern].length).to eq(1)
+  end  
 
 end
