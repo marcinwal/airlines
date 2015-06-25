@@ -10,4 +10,14 @@ class Route
       @min_takeoff = min_takeoff
   end
 
+  def calc_total_cost(how_many:persons)
+    @cost_pp * how_many
+  end
+
+  def take_off_allowed?(occupied,capacity)
+    ratio = occupied/capacity
+    ratio >= min_takeoff && ratio <= 100
+  end
+
+
 end

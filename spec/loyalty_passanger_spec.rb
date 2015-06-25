@@ -13,11 +13,6 @@ describe Loyalty_passanger do
     expect(loyalty_passanger.luggage).to eq(2)
   end
 
-  it 'should have discount price' do 
-    expect(loyalty_passanger.calc_final_price(:initial=>100.0)).to eq(50.0)
-    expect(loyalty_passanger.points).to eq(0)
-  end
-
   it 'should have discount price and loose all points' do 
     expect(loyalty_passanger.calc_final_price(:initial=>100.0)).to eq(50.0)
     expect(loyalty_passanger.points).to eq(0)
@@ -27,5 +22,5 @@ describe Loyalty_passanger do
     expect(loyalty_passanger.calc_final_price(:initial=>40.0)).to eq(0.0)
     expect(loyalty_passanger.points).to eq(10.0)
   end
-  
+
 end
