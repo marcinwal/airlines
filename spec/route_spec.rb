@@ -9,5 +9,5 @@ describe Route do
     expect(route.origin).to eq("London")
   end
 
-  
+
 end
