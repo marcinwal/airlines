@@ -22,8 +22,11 @@ class Flight
   end
 
   def count_passangers_type(type)
-    # byebug
     @passangers.reduce(0){|sum,pass| pass.status == type ? sum + 1: sum }
+  end
+
+  def number_of_bags
+    @passangers.reduce(0){|bags,pass| bags+pass.luggage}
   end
 
 end

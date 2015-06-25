@@ -49,8 +49,10 @@ describe Flight do
 
   it 'should count total number of bags' do 
     flight.add_passanger(general_passanger1)
-    flight.add_passanger(Loyalty_passanger1)
+    flight.add_passanger(loyalty_passanger1)
     expect(flight.number_of_bags).to eq(3)
+    flight.add_passanger(airline_passanger1)
+    expect(flight.number_of_bags).to eq(4)
   end
 
 end
