@@ -8,7 +8,7 @@ describe File_helper do
                  :aircraft_pattern => /add aircraft \S+ \d/,
                  :general_pattern => /add general \D+ \d{1,3}/,
                  :airline_pattern => /add airline \D+ \d{1,3}/,
-                 :loyalty_pattern => /add loyalty \D+ \d{1,3} \d+ (True|False) (True|False)/}}
+                 :loyalty_pattern => /add loyalty \D+ \d{1,3} \d+ (TRUE|FALSE) (TRUE|FALSE)/}}
 
 
   it "should load a flight route" do

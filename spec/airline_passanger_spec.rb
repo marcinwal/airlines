@@ -1,9 +1,13 @@
 require './app/airline_passanger.rb'
 
-let(:airline_passanger){Airline_passanger.new(:name=>"CEO",:age=>55)}
+
 
 describe Airline_passanger do 
-  it 'should have discount 100%'
-    expect(airline_passanger.discount).to eq(100.0)
+
+  let(:airline_passanger){Airline_passanger.new(:name=>"CEO",:age=>55)}
+
+  it 'should pay 0 price' do
+    expect(airline_passanger.calc_final_price(:initial=>100.0)).to eq(0.0)
   end
+
 end

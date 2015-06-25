@@ -10,8 +10,8 @@ describe General_passanger do
     expect(passanger.luggage).to eq(1)
   end
 
-  it 'should have zero discount' do 
-    expect(passanger.discount).to eq(0.0)
+  it 'should pay regular price' do
+    expect(passanger.calc_final_price(:initial=>100.0)).to eq(100.0)
   end
 
 end
