@@ -9,6 +9,7 @@ class Loyalty_passanger < General_passanger
     @points = points
     @use_points = use_points
     @extra_luggage = extra_luggage
+    @status = :loyalty_passanger
   end
 
   def luggage
