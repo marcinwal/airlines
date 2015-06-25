@@ -4,8 +4,8 @@ require './app/flight.rb'
 describe Flight do 
 
   let(:route){Route.new(:origin=>"London",:destination=>"Dublin",
-                        :cost_PP=>100,:ticket_px=>150,
-                        :min_takeff=>75)}
+                        :cost_pp=>100,:ticket_px=>150,
+                        :min_takeoff=>60)}
   let(:plane){Aircraft.new(:name=>"Cessna",
                            :number_of_seats=>3)}
 
@@ -53,6 +53,41 @@ describe Flight do
     expect(flight.number_of_bags).to eq(3)
     flight.add_passanger(airline_passanger1)
     expect(flight.number_of_bags).to eq(4)
+  end
+
+  it 'should calculate the whole cost and unajusted revenue' do 
+    flight.add_route(route)
+    flight.add_passanger(general_passanger1)
+    flight.add_passanger(loyalty_passanger1)
+    expect(flight.total_cost).to eq(200)  
+    expect(flight.total_unadjusted_revenue).to eq(300)  
+  end
+
+  it 'should calculate adjusted revenue' do 
+    flight.add_route(route)
+    flight.add_passanger(general_passanger1)
+    flight.add_passanger(loyalty_passanger1)  
+    flight.add_passanger(airline_passanger1)
+    expect(flight.total_adjusted_revenue).to eq(180)
+  end 
+    
+  it 'should calculate redeemed points' do 
+    flight.add_route(route)
+    flight.add_aircraft(plane)
+    flight.add_passanger(general_passanger1)
+    flight.add_passanger(loyalty_passanger1)  
+    flight.add_passanger(airline_passanger1)
+    expect(flight.total_adjusted_revenue).to eq(180)
+    expect(flight.redeemed_points).to eq(120)
+  end
+
+  it 'should know if takeoff is allowed' do 
+    flight.add_route(route)
+    flight.add_aircraft(plane)
+    flight.add_passanger(general_passanger1)
+    expect(flight.take_off_allowed?).to be(false)
+    flight.add_passanger(loyalty_passanger1)   
+    expect(flight.take_off_allowed?).to be(true)
   end
 
 end

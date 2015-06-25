@@ -21,6 +21,7 @@ describe Loyalty_passanger do
   it 'should have discount price and loose some points' do 
     expect(loyalty_passanger.calc_final_price(:initial=>40.0)).to eq(0.0)
     expect(loyalty_passanger.points).to eq(10.0)
+    expect(loyalty_passanger.redeemed).to eq(40)
   end
 
 end
