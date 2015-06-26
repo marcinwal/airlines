@@ -6,7 +6,7 @@ class Loyalty_passanger < General_passanger
   def initialize(name:name,age:age,points:points,
                  use_points:use_points,extra_luggage:extra_luggage)
     super(name:name,age:age)
-    @points = points
+    @points = points.to_f
     @use_points = use_points
     @extra_luggage = extra_luggage
     @status = :loyalty_passanger

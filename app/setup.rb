@@ -1,0 +1,8 @@
+require './app/aircraft.rb'
+require './app/airline_passanger.rb'
+require './app/file_helper.rb'
+require './app/general_passanger.rb'
+require './app/loyalty_passanger.rb'
+require './app/report.rb'
+require './app/route.rb'
+require './app/flight.rb'

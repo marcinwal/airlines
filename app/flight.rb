@@ -1,4 +1,3 @@
-require 'byebug'
 class Flight
 
   attr_reader :route,:passangers,:aircraft

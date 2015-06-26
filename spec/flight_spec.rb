@@ -8,6 +8,8 @@ describe Flight do
                         :min_takeoff=>60)}
   let(:plane){Aircraft.new(:name=>"Cessna",
                            :number_of_seats=>3)}
+  let(:plane_single){Aircraft.new(:name=>"Sport",
+                           :number_of_seats=>1)}
 
   let(:general_passanger1){General_passanger.new(:name=>"Olo",
                           :age=>38)}                        
@@ -18,7 +20,7 @@ describe Flight do
   let(:loyalty_passanger1){Loyalty_passanger.new(:name=>"Loyal",
                           :age=>28,:points=>120,:use_points=>true,
                           :extra_luggage=>true)}  
-  let(:flight){Flight.new()}
+  let(:flight){Flight.new}
 
   it 'should have start without passangers and one if added' do 
     expect(flight.passangers.count).to eq(0)    
@@ -34,7 +36,7 @@ describe Flight do
 
   it 'should add route' do 
     expect(flight.route.count).to equal(0)
-    flight.add_route(plane)
+    flight.add_route(route)
     expect(flight.route.count).to equal(1)
   end
 
@@ -88,6 +90,14 @@ describe Flight do
     expect(flight.take_off_allowed?).to be(false)
     flight.add_passanger(loyalty_passanger1)   
     expect(flight.take_off_allowed?).to be(true)
+  end
+
+  it 'should know when the flight is full' do 
+    flight.add_route(route)
+    flight.add_aircraft(plane_single)
+    expect(flight.full?).to be false
+    flight.add_passanger(general_passanger1)
+    expect(flight.full?).to be true
   end
 
 end

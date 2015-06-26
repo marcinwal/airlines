@@ -3,7 +3,7 @@ class Aircraft
 
   def initialize(name:type_of_plane,number_of_seats:seats=100)
     @name = name;
-    @number_of_seats = number_of_seats
+    @number_of_seats = number_of_seats.to_f
     @seats_available = number_of_seats
   end
 
